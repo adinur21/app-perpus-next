@@ -2,15 +2,15 @@
 import { Book } from "@/types/book.type";
 import { useEffect, useState } from "react";
 import BookCard from "./components/BookCard";
+import { getBooks } from "@/utils/api";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const init = async () => {
-      const data = await fetch(`${process.env.NEXT_PUBLIC_API_URI}/buku`);
-      const getBooks = (await data.json()) as Book[];
-      setBooks(getBooks);
+      const books = await getBooks();
+      setBooks(books);
     };
 
     init();
