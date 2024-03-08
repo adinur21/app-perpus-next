@@ -21,7 +21,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="px-1">
-          <Link className="flex" href="/tambahbuku">
+          <Link className="flex" href="/tambah-buku">
             <div className="bg-[#b33939] border-black-2 bg-opacity-0 rounded-xl hover:bg-opacity-100 transition-all duration-500">
               <div className="px-3 py-5">
                 <h1 className="font-semibold">Tambah Buku</h1>

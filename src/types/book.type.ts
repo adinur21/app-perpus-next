@@ -1,8 +1,7 @@
 export interface Book {
-  id: string;
-  title: string;
-  cover: string;
+  isbn: string;
+  tahun_rilis: string;
+  image: string;
   author: string;
-  publishDate: Date;
-  qty: number;
+  judul: string;
 }

@@ -37,6 +37,8 @@ body {
   background-color: #18191d;
 }
 
-.card {
+.card, .form {
   @apply text-black;
 }
+
+

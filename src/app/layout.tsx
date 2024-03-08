@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, } from "next/font/google";
 import Footer from "./components/Parts/Footer";
 import Navbar from "./components/Parts/Navbar";
@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   title: "Perpus Telkom",
   description: "dibuat Bayu UwU",
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 
 export default function RootLayout({
   children,
