@@ -13,3 +13,17 @@ export const createBook = async (book: Book) => {
   });
   return create.ok;
 };
+
+export const getImage = async (key:string)=>{
+  const image = await fetch(`${process.env.NEXT_PUBLIC_API_URI}/image`, { method: "POST", headers: {
+    Accept: "application/json, text/plain, */*",
+    "Content-Type": "application/json",
+  },body: JSON.stringify({ "action": "getObject", key: `image/${key}` }) })
+  return await image.json()
+}
+
+export const getBook = async (isbn:string) => {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URI}/buku/${isbn}`);
+  const getBook = (await data.json()) as Book;
+  return getBook;
+};

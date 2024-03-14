@@ -1,8 +1,11 @@
 "use client";
-import { addBook } from "@/actions/FormAction";
-import { useEffect, useRef, useState } from "react";
+import { Book } from "@/types/book.type";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
+import { getBook } from "@/utils/api";
+import { editBook } from "@/actions/FormAction";
+import { redirect } from "next/navigation";
 
 export function SubmitButton() {
   const { pending } = useFormStatus();
@@ -21,23 +24,34 @@ export function SubmitButton() {
   );
 }
 
-export default function NewForm() {
-  const ref = useRef<HTMLFormElement>(null);
-  const [formState, FormAction] = useFormState(addBook, {
+export default function UpdateForm({ isbn }: { isbn: string }) {
+  const [book, setBook] = useState<Book>();
+  const [formState, FormAction] = useFormState(editBook, {
     message: "",
   });
+
+  useEffect(() => {
+    const init = async () => {
+      const book = await getBook(isbn);
+      setBook(book);
+    };
+
+    init();
+  }, []);
+
   useEffect(() => {
     if (formState.message === "Success") {
-      toast.success("Yayy!! berhasil menambahkan buku!");
-      ref.current?.reset();
+      toast.success("Yayy!! berhasil mengupdate buku!");
+      redirect("/")
     } else if (formState.message === "Failed") {
-      toast.error("NOOOOO, Gagal menambahkan buku!");
+      toast.error("NOOOOO, Gagal mengupdate buku!");
     } else {
     }
-  });
+  }, [formState.message]);
+
   return (
     <>
-      <form action={FormAction} ref={ref} className="pt-10">
+      <form action={FormAction} className="pt-10">
         <div className="flex items-center justify-center flex-col-reverse gap-4">
           <div className="flex flex-col-reverse items-center justify-center flex-wrap gap-4 order-1">
             <div className="order-4">
@@ -47,6 +61,7 @@ export default function NewForm() {
                 placeholder="ex: Petualangan ujang"
                 className="form rounded-md p-2"
                 name="title"
+                defaultValue={book?.judul}
               />
             </div>
             <div className="order-3">
@@ -56,6 +71,7 @@ export default function NewForm() {
                 placeholder="ex: Kaka Milkita"
                 className="form rounded-md p-2"
                 name="author"
+                defaultValue={book?.author}
               />
             </div>
             <div className="order-2">
@@ -65,28 +81,17 @@ export default function NewForm() {
                 placeholder="ex: 2069"
                 className="form rounded-md p-2"
                 name="year"
+                defaultValue={book?.tahun_rilis}
               />
             </div>
-            <div className="order-1">
-              <h1 className="font-medium">ISBN</h1>
-              <input
-                type="text"
-                placeholder="Ex: 9783161484100"
-                className="form rounded-md p-2"
-                name="isbn"
-              />
-            </div>
-            <div className="order-0">
-              <h1 className="font-medium">Cover buku</h1>
-              <div className="">
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="block text-sm text-gray-900 border border-white border-dashed dark:text-white focus:outline-none"
-                  name="cover"
-                />
-              </div>
-            </div>
+            <input
+              type="text"
+              placeholder="ex: 2069"
+              className="form rounded-md p-2 hidden"
+              name="isbn"
+              aria-hidden={true}
+              value={isbn}
+            />
           </div>
           <div>
             <SubmitButton />

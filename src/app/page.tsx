@@ -1,20 +1,9 @@
-"use client";
 import { Book } from "@/types/book.type";
-import { useEffect, useState } from "react";
 import BookCard from "./components/BookCard";
 import { getBooks } from "@/utils/api";
 
-export default function Home() {
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    const init = async () => {
-      const books = await getBooks();
-      setBooks(books);
-    };
-
-    init();
-  }, []);
+export default async function Home() {
+  const books = await getBooks();
 
   return (
     <main className="pt-[6.5rem] px-28 flex-grow min-h-screen">

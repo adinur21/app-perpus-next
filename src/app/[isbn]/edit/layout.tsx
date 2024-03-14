@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "Tambah Buku - Perpus Telkom",
+  title: "Edit Buku - Perpus Telkom",
   description: "dibuat Bayu UwU",
 };
 
