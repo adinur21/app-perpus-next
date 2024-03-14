@@ -1,6 +1,6 @@
 FROM node:21.7.1-alpine
 
-WORKDIR /perpus-app
+WORKDIR /app/perpus
 
 COPY package* .
 
