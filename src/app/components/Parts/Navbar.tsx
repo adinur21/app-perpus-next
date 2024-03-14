@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -6,7 +7,7 @@ export default function Navbar() {
       <div className="flex items-center justify-start">
         <div className="flex p-1">
           <Link href="/">
-            <img className="w-24" src="/logo.png" />
+            <Image className="" width={96} height={96} src="/logo.png" alt="Logo"/>
           </Link>
         </div>
       </div>

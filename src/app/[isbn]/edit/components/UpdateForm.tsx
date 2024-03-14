@@ -14,7 +14,7 @@ export function SubmitButton() {
       type="submit"
       className={
         pending
-          ? "bg-[#6a6a6a] px-4 py-3 rounded-lg"
+          ? "bg-[#6a6a6a] px-4 py-3 rounded-lg cursor-wait"
           : "bg-[#ef5c5c] hover:bg-opacity-85 px-4 py-3 rounded-lg"
       }
       aria-disabled={pending}

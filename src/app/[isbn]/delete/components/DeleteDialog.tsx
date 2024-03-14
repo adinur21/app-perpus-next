@@ -27,7 +27,7 @@ export default function DeleteForm({ isbn }: { isbn: string }) {
             <button
               onClick={async () => {
                 try {
-                  toast.loading("Menghapus buku UwU")
+                  toast.info("Menghapus buku UwU")
                   await deleteBook(isbn);
                   toast.success("Buku Terhapus!");
                   home();
