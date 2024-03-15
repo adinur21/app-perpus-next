@@ -6,14 +6,15 @@
 ```bash
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install -y git nodejs docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo yum install -y git nodejs docker
 sudo systemctl start docker
 ```
 
 ### Clone repository ini kemudian jalankan:
 ```bash
 git clone https://github.com/teguhbayu/app-perpus-next.git
-cd app-perpus-next/
+
+cd app-perpus-next/ # PASTIKAN KALIAN MASUK KE DIRECTORY INI!!!!!!
 
 touch .env.local
 nano .env.local
@@ -25,6 +26,6 @@ API_URI = "XXXXXXXXXXXXXXXXXXXXX" # ganti placeholder X menjadi invoke URL api g
 
 ### Buat image container docker dan jalankan containernya:
 ```bash
-docker build -t ukl/perpus:1.0.0 .
+sudo docker build -t ukl/perpus:1.0.0 .
 sudo docker run -d -p 80:3000 ukl/perpus:1.0.0
 ```
