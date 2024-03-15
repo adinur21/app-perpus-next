@@ -29,3 +29,7 @@ API_URI = "XXXXXXXXXXXXXXXXXXXXX" # replace the X with AWS invoke URL API Gatewa
 sudo docker build -t ukl/perpus:1.0.0 .
 sudo docker run -d -p 80:3000 ukl/perpus:1.0.0
 ```
+
+## Thanks to Authors
+
+- [@teguhbayu](https://www.github.com/teguhbayu
